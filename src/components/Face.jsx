@@ -1,8 +1,9 @@
-import {useRef,useEffect} from 'react'
- 
+import {useRef,useEffect, useState} from 'react'
+import Home from './Home'
 import * as faceapi from 'face-api.js'
 
 function Face(){
+  const [showHome, setShowHome] = useState(false);
   const videoRef = useRef()
   const canvasRef = useRef()
 
@@ -47,7 +48,9 @@ function Face(){
 
       if(detections.length > 0) {
         // window.location.href = "https://www.google.com/"
-        window.location.href = "http://localhost:5173/home"
+        window.location.href = "/home"
+        // window.location.href = "http://localhost:5173/home"
+        // setShowHome(true);
       }
       // DRAW YOU FACE IN WEBCAM
       canvasRef.current.innerHtml = faceapi.createCanvasFromMedia(videoRef.current)
@@ -78,6 +81,7 @@ function Face(){
       </div>
       <canvas ref={canvasRef} width="940" height="650"
       className="appcanvas"/>
+      {/* {showHome && <Home/>} */}
     </div>
     )
 
